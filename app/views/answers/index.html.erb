@@ -1,0 +1,11 @@
+<h2>List of question's answers</h2>
+<h3>@quote</h3>
+<p>Question Title: <%= @question.title %></p>
+<p>Question Content: <%= @question.content %></p>
+
+<% @answers.each do |answer| %>
+  <p>Answer Title: <%= answer.title %></p>
+  <p>Answer Content: <%= answer.content %></p>
+  <p>Vote: <%= answer.vote %></p>
+<% end %>
+

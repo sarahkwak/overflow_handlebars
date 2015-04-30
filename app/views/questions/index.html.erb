@@ -1,0 +1,50 @@
+<h1>Show all of the Questions</h1>
+
+<script id="entry-template" type="text/x-handlebars-template">
+  <div class="entry">
+    <p>{{title}}</p>
+    <div class="body">
+      {{content}}
+    </div>
+    <form action="/questions/{{id}}/upvote" class="button_to" method="post">
+      <input name="_method" type="hidden" value="put">
+      <input type="submit" value="Up Vote">
+      <input name="authenticity_token" type="hidden" value="jnwc7JriWrwk6XiYOW1BEe/k6DX66S+qBlWz/Ikl7UY=">
+    </form>
+    <form action="/questions/{{id}}/downvote" class="button_to" method="post"><div><input name="_method" type="hidden" value="put" /><input type="submit" value="Down Vote" /><input name="authenticity_token" type="hidden" value="jnwc7JriWrwk6XiYOW1BEe/k6DX66S+qBlWz/Ikl7UY=" /></div></form>
+
+  </div>
+</script>
+
+<div class="question_list">
+<% @questions.reverse.each do |question|%>
+  <p>Title: <%=question.title %></p>
+  <p>Content: <%=question.content %></p>
+  <p>Vote: <%= question.vote %></p>
+  <p class="upvote"><%= button_to 'Up Vote', upvote_question_path(question), method: :put %></p>
+  <p class="downvote"><%= button_to 'Down Vote', downvote_question_path(question), method: :put %></p>
+  <%= link_to 'Link to Question', question_path(question) %>
+<% end %>
+</div>
+
+<h1>Submit Your Question Here:</h1>
+
+<div class="question_form">
+ <%= form_for @question do |f| %>
+
+  <p>
+    <%= f.label :title%>
+    <%= f.text_field :title%>
+  </p>
+
+  <p>
+    <%= f.label :content %>
+    <%= f.text_field :content%>
+  </p>
+
+  <p class="create">
+    <%= f.submit %>
+  </p>
+</div>
+
+<% end %>

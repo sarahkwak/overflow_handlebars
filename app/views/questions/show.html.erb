@@ -1,0 +1,32 @@
+<h2>Show One question</h2>
+
+<p>Title: <%= @question.title %></p>
+<p>Content: <%= @question.content %></p>
+
+<% @answers.each do |answer| %>
+  <p>Title: <%= answer.title %></p>
+  <p>Content: <%= answer.content %></p>
+  <p>Vote: <%= answer.vote %></p>
+  <%= button_to 'Up Vote', answer_upvote_path(@question,answer), method: :put %>
+  <%= button_to 'Down Vote', answer_downvote_path(@question, answer), method: :put %>
+<% end %>
+
+<%= form_for [@question, @answer] do |f|%>
+
+  <p>
+    <%= f.label :answer_title%>
+    <%= f.text_field :title%>
+  </p>
+
+  <p>
+    <%= f.label :answer_content %>
+    <%= f.text_field :content%>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+  <%= link_to 'Index', root_path %>
+  <%= button_to "delete question", question_path(@question), method: :delete %>
+  <%= link_to 'Edit question', edit_question_path %>

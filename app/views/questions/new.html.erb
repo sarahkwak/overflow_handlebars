@@ -1,0 +1,20 @@
+<h1>Submit Your Question Here:</h1>
+ <%= form_for @question do |f| %>
+
+  <p>
+    <%= f.label :title%>
+    <%= f.text_field :title%>
+  </p>
+
+  <p>
+    <%= f.label :content %>
+    <%= f.text_field :content%>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>
+
+

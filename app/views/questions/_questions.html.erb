@@ -1,0 +1,6 @@
+<p>Title: <%= @question.title %></p>
+<p>Content: <%= @question.content %></p>
+<p>Vote: <%= @question.vote %></p>
+<p class="upvote"><%= button_to 'Up Vote', upvote_question_path(@question), method: :put %></p>
+<p class="downvote"><%= button_to 'Down Vote', downvote_question_path(@question), method: :put %></p>
+<%= link_to 'Link to Question', question_path(@question) %>
