@@ -10,17 +10,15 @@ class AnswersController < ApplicationController
     @question = Question.where(id: params[:question_id]).first
     @answer = Answer.new(answer_params)
     # @question.answers.new(answer_params)
-    if @answer.save
-      @question.answers << @answer
-      @question.save
-      status = 302
-      redirect_to question_path(@answer.question_id)
-    else
-      redirect_to new_question_path
+    respond_to do |format|
+      if @answer.save
+        @question.answers  << @answer
+        format.html { redirect_to question_path(@question)}
+        format.json { render json: @answer.to_json}
+      else
+        format.json { redirect_to question_path(@question) }
+      end
     end
-
-
-
   end
 
   def upvote

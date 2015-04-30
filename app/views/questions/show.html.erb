@@ -3,6 +3,7 @@
 <p>Title: <%= @question.title %></p>
 <p>Content: <%= @question.content %></p>
 
+<div class="answer_list">
 <% @answers.each do |answer| %>
   <p>Title: <%= answer.title %></p>
   <p>Content: <%= answer.content %></p>
@@ -10,6 +11,29 @@
   <%= button_to 'Up Vote', answer_upvote_path(@question,answer), method: :put %>
   <%= button_to 'Down Vote', answer_downvote_path(@question, answer), method: :put %>
 <% end %>
+</div>
+
+<script id="entry-template" type="text/x-handlebars-template">
+  <div class="entry">
+    <strong>{{title}}</strong>
+    <div class="body">
+      {{content}}
+    </div>
+    <form action="/questions/{{question_id}}/answers/{{id}}/upvote" class="button_to" method="post">
+      <div><input name="_method" type="hidden" value="put" />
+        <input type="submit" value="Up Vote" />
+        <input name="authenticity_token" type="hidden" value="jnwc7JriWrwk6XiYOW1BEe/k6DX66S+qBlWz/Ikl7UY=" />
+      </div>
+    </form>
+    <form action="/questions/{{question_id}}/answers/{{id}}/downvote" class="button_to" method="post">
+      <div>
+        <input name="_method" type="hidden" value="put" />
+        <input type="submit" value="Down Vote" />
+        <input name="authenticity_token" type="hidden" value="jnwc7JriWrwk6XiYOW1BEe/k6DX66S+qBlWz/Ikl7UY=" />
+      </div>
+    </form>
+  </div>
+</script>
 
 <%= form_for [@question, @answer] do |f|%>
 
