@@ -19,4 +19,13 @@ $(document).ready(function(){
       alert("AJAX FAILED")
     });
   });
+
+//   $(document).on("submit", "delete_btn", function(event){
+//     event.preventDefault();
+//     var request = $.ajax({
+//       type: "",
+//       url:
+//     })
+//   } )
 });
+
